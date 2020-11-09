@@ -1,17 +1,26 @@
 import pytest
 import requests
+import time
+from selenium import webdriver
 
-r = requests.get("http://api.duckduckgo.com/?q=presidents of the united states&format=json")
+driver = webdriver.Chrome('chromedriver')  # Optional argument, if not specified will search path.
+driver.get('https://en.wikipedia.org/');
+time.sleep(5) # Let the user actually see something!
+search_box = driver.find_element_by_name('search')
+search_box.send_keys('wake tech')
+search_box.submit()
+time.sleep(5) # Let the user actually see something!
+driver.quit()
 
-RelatedTopics = ["Washington","Adams","Jefferson","Madison","Monroe","Adams","Jackson","Buren",
-"Harrison","Tyler","Polk","Taylor","Fillmore","Fillmore", "Pierce","Buchanan","Lincoln","Johnson","Grant",
-"Hayes","Garfield","Arthur","Cleveland","Harrison","Cleveland","McKinley","Roosevelt","Taft","Wilson","Harding","Coolidge",
-"Hoover","Roosevelt","Truman","Eisenhower","Kennedy","Johnson","Nixon", "Ford", "Carter","Reagan","Bush","Clinton","Bush"
-,"Obama","Trump"]
 
 
-def test_presidents():
-    assert [ele for ele in RelatedTopics if(ele in r.text)] 
+
+def test_wikipedia():
+    print("test")
+
+
+
+
         
     
     
